@@ -187,7 +187,7 @@ github_commit=$(git rev-parse --short HEAD)
 printf 'release: publishing AUR metadata\n'
 aur_worktree="${runtime_dir}/aur"
 git worktree add "$aur_worktree" aur/master
-mapfile -t aur_files < <(git -C "$aur_worktree" ls-files | sort)
+mapfile -t aur_files < <(git -C "$aur_worktree" ls-files | LC_ALL=C sort)
 [[ ${#aur_files[@]} -eq 2 && ${aur_files[0]} == ".SRCINFO" && ${aur_files[1]} == "PKGBUILD" ]] ||
   fail "AUR branch contains files other than PKGBUILD and .SRCINFO"
 cp PKGBUILD .SRCINFO "$aur_worktree/"
