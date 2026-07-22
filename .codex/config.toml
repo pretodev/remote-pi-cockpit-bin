@@ -1,0 +1,46 @@
+# Project-local Codex defaults. Loaded only after this repository is trusted.
+model = "gpt-5.6-terra"
+model_reasoning_effort = "low"
+model_reasoning_summary = "none"
+model_verbosity = "low"
+tool_output_token_limit = 4000
+approval_policy = "on-request"
+default_permissions = "aur-release"
+web_search = "cached"
+
+[agents]
+max_threads = 3
+max_depth = 1
+job_max_runtime_seconds = 600
+interrupt_message = false
+
+[agents.release-scout]
+description = "Verify the requested stable upstream release and both Linux asset digests."
+config_file = "./agents/release-scout.toml"
+
+[agents.package-auditor]
+description = "Audit AUR metadata, package build output, layout, and native dependencies."
+config_file = "./agents/package-auditor.toml"
+
+[permissions.aur-release.filesystem]
+":minimal" = "read"
+":tmpdir" = "write"
+":slash_tmp" = "write"
+glob_scan_max_depth = 3
+
+[permissions.aur-release.filesystem.":workspace_roots"]
+"." = "write"
+".agents" = "read"
+".codex" = "read"
+"**/*.env" = "deny"
+
+[permissions.aur-release.network]
+enabled = true
+mode = "limited"
+allow_local_binding = false
+
+[permissions.aur-release.network.domains]
+"api.github.com" = "allow"
+"github.com" = "allow"
+"**.githubusercontent.com" = "allow"
+"aur.archlinux.org" = "allow"

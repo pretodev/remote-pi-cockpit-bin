@@ -51,7 +51,15 @@ AUR helpers detect new package revisions normally:
 yay -Syu
 ```
 
-For package maintenance instructions, see [Agent.md](Agent.md).
+Codex automatically reads [AGENTS.md](AGENTS.md) for the concise release path.
+For the complete package maintenance procedure, see [Agent.md](Agent.md).
+
+The repository also provides a Codex release skill. Select **Release AUR** from
+`/skills`, or invoke it directly with a version:
+
+```text
+$release 1.14.8
+```
 
 ## License
 

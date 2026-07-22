@@ -1,0 +1,4 @@
+interface:
+  display_name: "Release AUR"
+  short_description: "Publica uma versão no GitHub e AUR"
+  default_prompt: "Use $release para publicar a versão informada no GitHub e no AUR."
